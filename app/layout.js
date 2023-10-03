@@ -1,6 +1,6 @@
 import { Urbanist } from "next/font/google";
 import "./global.css";
-import AuthProviders from "./providers/AuthProvider";
+import AuthProviders from "../providers/AuthProvider";
 
 const font = Urbanist({ subsets: ["latin"] });
 
