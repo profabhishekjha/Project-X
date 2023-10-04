@@ -3,21 +3,24 @@ import Layout from "@/components/Layout";
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const NewProduct = () => {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [goToProducts, setGotoProducts] = useState(false);
 
   const createProduct = async (e) => {
     e.preventDefault();
     const data = { title, description, price };
-    try {
-      const response = await axios.post("/api/products", data);
-    } catch (error) {
-      console.error("Error creating product:", error);
-    }
+    const response = await axios.post("/api/products", data);
+    setGotoProducts(true);
   };
+  if (goToProducts) {
+    router.push("/products");
+  }
 
   return (
     <Layout>
